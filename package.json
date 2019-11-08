@@ -1,0 +1,28 @@
+{
+  "name": "osmextractstoredis",
+  "version": "1.0.0",
+  "description": "Export OSM extracts in PBF format to REDIS",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sivteck/OsmExtractsToRedis.git"
+  },
+  "keywords": [
+    "PBF",
+    "REDIS"
+  ],
+  "dependencies": [
+    "pbf2json",
+    "ioredis",
+    "through2"
+  ],
+  "author": "Sivaram Balakrishnan",
+  "license": "GPL-3.0-only",
+  "bugs": {
+    "url": "https://github.com/sivteck/OsmExtractsToRedis/issues"
+  },
+  "homepage": "https://github.com/sivteck/OsmExtractsToRedis#readme"
+}
