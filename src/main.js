@@ -1,6 +1,7 @@
 const pbf2json = require('pbf2json')
 const through = require('through2')
-const { insertPlace } = require('./createIndex.js')
+const { pipeline } = require('stream')
+const { insertPlace } = require('./createIndexRedis.js')
 
 const config = {
   file: process.argv[2],
@@ -10,10 +11,11 @@ const config = {
 
 let count = 1
 
-pbf2json.createReadStream(config)
-  .pipe(through.obj(async function(item, e, next) {
+let inputStream = pbf2json.createReadStream(config)
+let transformStream = through.obj(async function(item, e, next) {
     if (item.tags.name) {
       try {
+        // if (item.tags.amenity === 'restaurant') console.log(item)
         await insertPlace(item)
       }
       catch (error) {
@@ -22,4 +24,11 @@ pbf2json.createReadStream(config)
       count++
     }
     next()
-}))
+})
+
+//inputStream.pipe(transformStream)
+
+//inputStream.on('end', () => transformStream.end())
+//transformStream.on('end', () => transformStream.end())
+const processedCallback = (e) => console.log('mememeemememem')
+pipeline(inputStream, transformStream, processedCallback)
