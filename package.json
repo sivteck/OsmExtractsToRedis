@@ -17,6 +17,7 @@
   "dependencies": [
     "pbf2json",
     "ioredis",
+    "pg",
     "through2"
   ],
   "author": "Sivaram Balakrishnan",
